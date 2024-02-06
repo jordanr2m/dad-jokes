@@ -1,5 +1,6 @@
 const jokeButton = document.querySelector('.getJoke');
 const jokeHolder = document.querySelector('.joke p');
+const loader = document.querySelector('.loader');
 
 const buttonText = [
     'Ugh.',
@@ -23,10 +24,21 @@ async function fetchJoke () {
     return data;
 }
 
+function randomItemFromArray(arr, not) {
+    const item = arr[Math.floor(Math.random() * arr.length)];
+    if (item === not) {
+        console.log('Ahh we used that one last time, try again!')
+        return randomItemFromArray(arr, not)
+    }
+    return item;
+}
+
 async function handleClick() {
     const { joke } = await fetchJoke(); // Destructuring the joke into a variable called joke
     // console.log(joke);
     jokeHolder.textContent = joke;
+    jokeHolder.style.fontSize = '2.5rem';
+    jokeButton.textContent = randomItemFromArray(buttonText, jokeButton.textContent)
 }
 
 jokeButton.addEventListener('click', handleClick);
