@@ -23,4 +23,9 @@ body {
     font-size: 1.5rem;
     background-color: rgb(24, 86, 185);
     color: white;
+    cursor: pointer;
+}
+
+.getJoke:hover {
+    background-color: rgb(22, 79, 172);
 }
